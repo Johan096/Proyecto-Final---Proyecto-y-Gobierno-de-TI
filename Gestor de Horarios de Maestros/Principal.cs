@@ -45,42 +45,49 @@ namespace Gestor_de_Horarios_de_Maestros
             {
                 using (MySqlConnection con = new MySqlConnection(connectionString))
                 {
-                    // Nota: Asegúrate de que 'HorariosView' o tu Tabla exista en tu futura BD
-                    string query = "SELECT * FROM HorariosView";
+                    // ELIMINADA la coma después de 'Créditos'
+                    string query = @"SELECT 
+                                MaestroNombre AS 'Docente', 
+                                IdMateria AS 'ID',
+                                Nombre AS 'Materia', 
+                                DiasImparte AS 'Días', 
+                                Hora AS 'Hora', 
+                                HD_Credito AS 'H/D Credito',
+                                DiasMes AS 'Días Mes',
+                                TotalCredito AS 'Total Credito',
+                                Inscritos AS 'Alum. Inscritos',
+                                Aula AS 'Aula', 
+                                Seccion AS 'Sección', 
+                                Credito AS 'Créditos'
+                             FROM HorariosView";
 
-                    if (nombreMaestro != "Todos")
+                    // Solo agregamos el WHERE si NO es "Todos" y NO es el objeto de sistema
+                    if (nombreMaestro != "Todos" && !nombreMaestro.Contains("System.Data.DataRowView"))
                     {
                         query += " WHERE MaestroNombre = @nombre";
                     }
 
+                    query += " ORDER BY MaestroNombre ASC";
+
                     MySqlCommand cmd = new MySqlCommand(query, con);
-                    if (nombreMaestro != "Todos")
+
+                    if (nombreMaestro != "Todos" && !nombreMaestro.Contains("System.Data.DataRowView"))
                     {
                         cmd.Parameters.AddWithValue("@nombre", nombreMaestro);
                     }
 
                     MySqlDataAdapter da = new MySqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
-
-                    // Aquí es donde el programa intenta conectar. Si falla, salta al catch.
                     da.Fill(dt);
-
                     dataGridView1.DataSource = dt;
                 }
             }
             catch (MySqlException ex)
             {
-                // Si no hay conexión, limpiamos el grid o mostramos un mensaje discreto
+                MessageBox.Show("Error de MySQL: " + ex.Message);
                 dataGridView1.DataSource = null;
-                // Opcional: imprimir el error en la consola de depuración para tu control
-                System.Diagnostics.Debug.WriteLine("Error de conexión: " + ex.Message);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ocurrió un error inesperado: " + ex.Message);
             }
         }
-
 
         public Principal()
         {
@@ -129,7 +136,7 @@ namespace Gestor_de_Horarios_de_Maestros
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedItem != null)
+            if (comboBox1.SelectedIndex != -1)
             {
                 string seleccion = comboBox1.Text;
                 CargarGrid(seleccion);
@@ -155,7 +162,9 @@ namespace Gestor_de_Horarios_de_Maestros
 
         private void actualizarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            CargarComboMaestros();
+            CargarGrid();
+            MessageBox.Show("Datos actualizados correctamente.", "Nítido", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
