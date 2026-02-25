@@ -111,12 +111,26 @@ namespace Gestor_de_Horarios_de_Maestros
 
         private void modificarToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
+            using (FormModificar ventana = new FormModificar())
+            {
+                ventana.ShowDialog();
+            }
 
+            CargarComboMaestros();
+            CargarGrid();
         }
+
+
 
         private void agregarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            using (FormAgregar ventana = new FormAgregar())
+            {
+                ventana.ShowDialog();
+            }
+            CargarComboMaestros();
+            CargarGrid();
         }
 
         private void asignarToolStripMenuItem_Click(object sender, EventArgs e)

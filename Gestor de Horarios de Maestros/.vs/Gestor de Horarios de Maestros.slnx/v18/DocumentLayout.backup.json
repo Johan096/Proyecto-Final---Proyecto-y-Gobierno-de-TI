@@ -3,44 +3,36 @@
   "WorkspaceRootPath": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|d:\\folder\\programar\\c#\\proyecto-final---proyecto-y-gobierno-de-ti\\gestor de horarios de maestros\\formmodificar.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|solutionrelative:formmodificar.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|d:\\folder\\programar\\c#\\proyecto-final---proyecto-y-gobierno-de-ti\\gestor de horarios de maestros\\formmodificar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|solutionrelative:formmodificar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|d:\\folder\\programar\\c#\\proyecto-final---proyecto-y-gobierno-de-ti\\gestor de horarios de maestros\\formagregar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|solutionrelative:formagregar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|d:\\folder\\programar\\c#\\proyecto-final---proyecto-y-gobierno-de-ti\\gestor de horarios de maestros\\principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|solutionrelative:principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:3:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|d:\\folder\\programar\\c#\\proyecto-final---proyecto-y-gobierno-de-ti\\gestor de horarios de maestros\\principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:3:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|solutionrelative:principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|d:\\folder\\programar\\c#\\proyecto-final---proyecto-y-gobierno-de-ti\\gestor de horarios de maestros\\formagregar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|solutionrelative:formagregar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:6:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|d:\\folder\\programar\\c#\\proyecto-final---proyecto-y-gobierno-de-ti\\gestor de horarios de maestros\\principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:6:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|solutionrelative:principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|d:\\folder\\programar\\c#\\proyecto-final---proyecto-y-gobierno-de-ti\\gestor de horarios de maestros\\formagregar.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|solutionrelative:formagregar.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C0821787-479E-4E96-9E70-689C682C15C1}|Gestor de Horarios de Maestros.csproj|D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{C0821787-479E-4E96-9E70-689C682C15C1}|Gestor de Horarios de Maestros.csproj|solutionrelative:principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|d:\\folder\\programar\\c#\\proyecto-final---proyecto-y-gobierno-de-ti\\gestor de horarios de maestros\\formmodificar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|solutionrelative:formmodificar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|d:\\folder\\programar\\c#\\proyecto-final---proyecto-y-gobierno-de-ti\\gestor de horarios de maestros\\configconexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|solutionrelative:configconexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|d:\\folder\\programar\\c#\\proyecto-final---proyecto-y-gobierno-de-ti\\gestor de horarios de maestros\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|solutionrelative:app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|d:\\folder\\programar\\c#\\proyecto-final---proyecto-y-gobierno-de-ti\\gestor de horarios de maestros\\configconexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|solutionrelative:configconexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0821787-479E-4E96-9E70-689C682C15C1}|Gestor de Horarios de Maestros.csproj|D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\configconexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{C0821787-479E-4E96-9E70-689C682C15C1}|Gestor de Horarios de Maestros.csproj|solutionrelative:configconexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|d:\\folder\\programar\\c#\\proyecto-final---proyecto-y-gobierno-de-ti\\gestor de horarios de maestros\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:2:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|d:\\folder\\programar\\c#\\proyecto-final---proyecto-y-gobierno-de-ti\\gestor de horarios de maestros\\principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:2:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|solutionrelative:principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|d:\\folder\\programar\\c#\\proyecto-final---proyecto-y-gobierno-de-ti\\gestor de horarios de maestros\\principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{317F9167-E9A3-40B7-7C82-BE5C33AE765D}|Gestor de Horarios de Maestros.csproj|solutionrelative:principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,129 +42,110 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "Principal.cs [Dise\u00F1o]",
               "DocumentMoniker": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\Principal.cs",
               "RelativeDocumentMoniker": "Principal.cs",
               "ToolTip": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\Principal.cs [Dise\u00F1o]",
               "RelativeToolTip": "Principal.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T00:15:57.065Z",
+              "WhenOpened": "2026-02-25T14:25:45.821Z",
+              "IsPinned": true,
               "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ConfigConexion.cs [Dise\u00F1o]",
-              "DocumentMoniker": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\ConfigConexion.cs",
-              "RelativeDocumentMoniker": "ConfigConexion.cs",
-              "ToolTip": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\ConfigConexion.cs [Dise\u00F1o]",
-              "RelativeToolTip": "ConfigConexion.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T00:15:36.4Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Principal.cs [Dise\u00F1o]",
-              "DocumentMoniker": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\Principal.cs",
-              "RelativeDocumentMoniker": "Principal.cs",
-              "ToolTip": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\Principal.cs [Dise\u00F1o]",
-              "RelativeToolTip": "Principal.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-23T23:05:00.758Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Principal.cs",
               "DocumentMoniker": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\Principal.cs",
               "RelativeDocumentMoniker": "Principal.cs",
               "ToolTip": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\Principal.cs",
               "RelativeToolTip": "Principal.cs",
-              "ViewState": "AgIAAEwAAAAAAAAAAAAQwF8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAAAHYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-18T21:59:56.207Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ConfigConexion.cs [Dise\u00F1o]",
-              "DocumentMoniker": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\ConfigConexion.cs",
-              "RelativeDocumentMoniker": "ConfigConexion.cs",
-              "ToolTip": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\ConfigConexion.cs [Dise\u00F1o]",
-              "RelativeToolTip": "ConfigConexion.cs [Dise\u00F1o]",
+              "DocumentIndex": 2,
+              "Title": "FormAgregar.cs",
+              "DocumentMoniker": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\FormAgregar.cs",
+              "RelativeDocumentMoniker": "FormAgregar.cs",
+              "ToolTip": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\FormAgregar.cs",
+              "RelativeToolTip": "FormAgregar.cs",
+              "ViewState": "AgIAAHcAAAAAAAAAAAAIwIcAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-18T23:13:25.434Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ConfigConexion.cs",
-              "DocumentMoniker": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\ConfigConexion.cs",
-              "RelativeDocumentMoniker": "ConfigConexion.cs",
-              "ToolTip": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\ConfigConexion.cs",
-              "RelativeToolTip": "ConfigConexion.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-18T23:13:57.875Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-18T21:57:38.158Z",
+              "WhenOpened": "2026-02-25T14:21:32.633Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "app.config",
-              "DocumentMoniker": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\app.config",
-              "RelativeDocumentMoniker": "app.config",
-              "ToolTip": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\app.config",
-              "RelativeToolTip": "app.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2026-02-18T23:08:43.428Z",
+              "Title": "FormAgregar.Designer.cs",
+              "DocumentMoniker": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\FormAgregar.Designer.cs",
+              "RelativeDocumentMoniker": "FormAgregar.Designer.cs",
+              "ToolTip": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\FormAgregar.Designer.cs",
+              "RelativeToolTip": "FormAgregar.Designer.cs",
+              "ViewState": "AgIAAIQAAAAAAAAAAAAQwK4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-25T14:22:14.429Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Principal.cs [Dise\u00F1o]",
-              "DocumentMoniker": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\Principal.cs",
-              "RelativeDocumentMoniker": "Principal.cs",
-              "ToolTip": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\Principal.cs [Dise\u00F1o]",
-              "RelativeToolTip": "Principal.cs [Dise\u00F1o]",
+              "DocumentIndex": 1,
+              "Title": "FormModificar.cs",
+              "DocumentMoniker": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\FormModificar.cs",
+              "RelativeDocumentMoniker": "FormModificar.cs",
+              "ToolTip": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\FormModificar.cs",
+              "RelativeToolTip": "FormModificar.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAcAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-18T22:12:46.717Z"
+              "WhenOpened": "2026-02-25T14:57:46.029Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Principal.cs [Design]",
-              "DocumentMoniker": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\Principal.cs",
-              "RelativeDocumentMoniker": "Principal.cs",
-              "ToolTip": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\Principal.cs [Design]",
-              "RelativeToolTip": "Principal.cs [Design]",
+              "DocumentIndex": 0,
+              "Title": "FormModificar.Designer.cs",
+              "DocumentMoniker": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\FormModificar.Designer.cs",
+              "RelativeDocumentMoniker": "FormModificar.Designer.cs",
+              "ToolTip": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\FormModificar.Designer.cs",
+              "RelativeToolTip": "FormModificar.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-19T01:27:12.839Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-02-25T15:12:36.905Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FormAgregar.cs [Dise\u00F1o]",
+              "DocumentMoniker": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\FormAgregar.cs",
+              "RelativeDocumentMoniker": "FormAgregar.cs",
+              "ToolTip": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\FormAgregar.cs [Dise\u00F1o]",
+              "RelativeToolTip": "FormAgregar.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-25T15:39:55.269Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FormModificar.cs [Dise\u00F1o]",
+              "DocumentMoniker": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\FormModificar.cs",
+              "RelativeDocumentMoniker": "FormModificar.cs",
+              "ToolTip": "D:\\Folder\\Programar\\C#\\Proyecto-Final---Proyecto-y-Gobierno-de-TI\\Gestor de Horarios de Maestros\\FormModificar.cs [Dise\u00F1o]",
+              "RelativeToolTip": "FormModificar.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-25T15:19:37.188Z",
+              "EditorCaption": " [Dise\u00F1o]"
             }
           ]
         }
