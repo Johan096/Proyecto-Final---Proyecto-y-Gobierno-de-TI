@@ -9,3 +9,4 @@
 * Christian Rollin (23-SISN-2-053): Se agrego la función de Modificar.
 * Josias Martinez Mitchel (23-SISN-2-054): Se agrego la funcion de Asignar.
 * Harvin Samir Berroa Celesten (23-SISN-2-050): Se agrego la funcion de Buscar.
+* Carlos Manuel Acosta Mota (23-EISN-2-025): Se agrego una fucion para validar horarios y evitar choches.
