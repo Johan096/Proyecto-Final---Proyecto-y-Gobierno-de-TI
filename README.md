@@ -7,3 +7,5 @@
 * Correcciones: Se soluciono un problema que no se mostraba los datos en la tabla GRID, también se ordeno y ajusto la representación de los datos en la tabla.
 * Liam Guilamo (22-SISN-2-065): Se agrego la función de Agregar.
 * Christian Rollin (23-SISN-2-053): Se agrego la función de Modificar.
+* Josias Martinez Mitchel (23-SISN-2-054): Se agrego la funcion de Asignar.
+* Harvin Samir Berroa Celesten (23-SISN-2-050): Se agrego la funcion de Buscar.

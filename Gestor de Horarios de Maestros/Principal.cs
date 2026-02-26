@@ -39,13 +39,13 @@ namespace Gestor_de_Horarios_de_Maestros
             comboBox1.ValueMember = "IdMaestro";
         }
 
-        private void CargarGrid(string nombreMaestro = "Todos")
+        private void CargarGrid(string nombreMaestro = "", string seccion = "", string dia = "", string credito = "", string hora = "")
         {
             try
             {
                 using (MySqlConnection con = new MySqlConnection(connectionString))
                 {
-                    // ELIMINADA la coma después de 'Créditos'
+                    // WHERE 1=1 permite que si no hay filtros, se muestren TODOS los registros
                     string query = @"SELECT 
                                 MaestroNombre AS 'Docente', 
                                 IdMateria AS 'ID',
@@ -59,22 +59,45 @@ namespace Gestor_de_Horarios_de_Maestros
                                 Aula AS 'Aula', 
                                 Seccion AS 'Sección', 
                                 Credito AS 'Créditos'
-                             FROM HorariosView";
+                             FROM HorariosView
+                             WHERE 1=1";
 
-                    // Solo agregamos el WHERE si NO es "Todos" y NO es el objeto de sistema
-                    if (nombreMaestro != "Todos" && !nombreMaestro.Contains("System.Data.DataRowView"))
+                    MySqlCommand cmd = new MySqlCommand();
+                    cmd.Connection = con;
+
+                    // Si es "Todos" o está vacío, NO agregamos el filtro de Maestro (mostrará todo)
+                    if (!string.IsNullOrEmpty(nombreMaestro) && nombreMaestro != "Todos" && !nombreMaestro.Contains("System.Data.DataRowView"))
                     {
-                        query += " WHERE MaestroNombre = @nombre";
+                        query += " AND MaestroNombre LIKE @nombre";
+                        cmd.Parameters.AddWithValue("@nombre", "%" + nombreMaestro + "%");
+                    }
+
+                    if (!string.IsNullOrEmpty(seccion))
+                    {
+                        query += " AND Seccion LIKE @seccion";
+                        cmd.Parameters.AddWithValue("@seccion", "%" + seccion + "%");
+                    }
+
+                    if (!string.IsNullOrEmpty(dia))
+                    {
+                        query += " AND DiasImparte LIKE @dia";
+                        cmd.Parameters.AddWithValue("@dia", "%" + dia + "%");
+                    }
+
+                    if (!string.IsNullOrEmpty(credito))
+                    {
+                        query += " AND Credito = @credito";
+                        cmd.Parameters.AddWithValue("@credito", credito);
+                    }
+
+                    if (!string.IsNullOrEmpty(hora))
+                    {
+                        query += " AND Hora LIKE @hora";
+                        cmd.Parameters.AddWithValue("@hora", "%" + hora + "%");
                     }
 
                     query += " ORDER BY MaestroNombre ASC";
-
-                    MySqlCommand cmd = new MySqlCommand(query, con);
-
-                    if (nombreMaestro != "Todos" && !nombreMaestro.Contains("System.Data.DataRowView"))
-                    {
-                        cmd.Parameters.AddWithValue("@nombre", nombreMaestro);
-                    }
+                    cmd.CommandText = query;
 
                     MySqlDataAdapter da = new MySqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
@@ -84,8 +107,7 @@ namespace Gestor_de_Horarios_de_Maestros
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show("Error de MySQL: " + ex.Message);
-                dataGridView1.DataSource = null;
+                MessageBox.Show("Error de conexión: " + ex.Message);
             }
         }
 
@@ -135,12 +157,38 @@ namespace Gestor_de_Horarios_de_Maestros
 
         private void asignarToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Abrimos el formulario que acabamos de crear
+            using (FormAsignar ventana = new FormAsignar())
+            {
+                // Si el usuario presiona el botón "Asignar Materia" y todo sale bien (DialogResult.OK)
+                if (ventana.ShowDialog() == DialogResult.OK)
+                {
+                    // Refrescamos los datos para ver la nueva asignación en el Grid
+                    CargarComboMaestros();
+                    CargarGrid();
 
+                    MessageBox.Show("La materia ha sido asignada al maestro correctamente.",
+                                    "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
 
         private void buscarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            using (FormBuscar fBusqueda = new FormBuscar())
+            {
+                if (fBusqueda.ShowDialog() == DialogResult.OK)
+                {
+                    // Enviamos los datos capturados de la ventanita al CargarGrid
+                    CargarGrid(
+                        comboBox1.Text,
+                        fBusqueda.Seccion,
+                        fBusqueda.Dia,
+                        fBusqueda.Credito,
+                        fBusqueda.Hora
+                    );
+                }
+            }
         }
 
         private void removerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -150,10 +198,12 @@ namespace Gestor_de_Horarios_de_Maestros
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex != -1)
+            // Solo actuamos si el usuario cambió la selección (tiene el foco)
+            if (comboBox1.Focused && comboBox1.SelectedIndex != -1)
             {
-                string seleccion = comboBox1.Text;
-                CargarGrid(seleccion);
+                // Al seleccionar un maestro (o "Todos"), cargamos el grid 
+                // enviando solo el nombre y dejando los demás filtros vacíos.
+                CargarGrid(comboBox1.Text, "", "", "", "");
             }
         }
 

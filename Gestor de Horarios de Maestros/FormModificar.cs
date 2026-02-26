@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using System.Collections.Generic; // Necesario para List<>
 
 namespace Gestor_de_Horarios_de_Maestros
 {
@@ -59,6 +60,44 @@ namespace Gestor_de_Horarios_de_Maestros
             catch (Exception ex) { MessageBox.Show("Error materias: " + ex.Message); }
         }
 
+        // --- MÉTODO PARA OBTENER DATOS DE VALIDACIÓN ---
+        private List<HorarioSimple> ObtenerHorariosExistentes(int idMateriaActual)
+        {
+            List<HorarioSimple> lista = new List<HorarioSimple>();
+            try
+            {
+                using (MySqlConnection con = new MySqlConnection(connectionString))
+                {
+                    con.Open();
+                    // Consultamos todos los horarios EXCEPTO el que estamos modificando actualmente
+                    string query = @"SELECT t2.Nombre as Maestro, t1.DiasImparte, t1.Hora 
+                                   FROM Materias t1 
+                                   INNER JOIN Maestros t2 ON t1.IdMaestro = t2.IdMaestro
+                                   WHERE t1.IdMateria != @idActual";
+
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@idActual", idMateriaActual);
+
+                    using (MySqlDataReader r = cmd.ExecuteReader())
+                    {
+                        while (r.Read())
+                        {
+                            int horaI = TimeSpan.Parse(r["Hora"].ToString()).Hours;
+                            lista.Add(new HorarioSimple
+                            {
+                                Maestro = r["Maestro"].ToString(),
+                                Dia = r["DiasImparte"].ToString(),
+                                HoraInicio = horaI,
+                                HoraFin = horaI + 1
+                            });
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) { MessageBox.Show("Error al cargar lista de validación: " + ex.Message); }
+            return lista;
+        }
+
         private void CmbMaterias_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!(cmbMaterias.SelectedItem is ComboItem item)) return;
@@ -86,7 +125,6 @@ namespace Gestor_de_Horarios_de_Maestros
                             txtSeccion.Text = r["Seccion"].ToString();
                             txtCredito.Text = r["Credito"].ToString();
 
-                            // Seleccionar el maestro actual en el combo
                             int idM = Convert.ToInt32(r["IdMaestro"]);
                             foreach (ComboItem m in cmbMaestroAsoc.Items)
                             {
@@ -127,15 +165,39 @@ namespace Gestor_de_Horarios_de_Maestros
         private void GuardarMateria()
         {
             if (!(cmbMaterias.SelectedItem is ComboItem selector) || !(cmbMaestroAsoc.SelectedItem is ComboItem maestro)) return;
+
+            // --- VALIDACIÓN DE CHOQUE (Código del PDF) ---
+            try
+            {
+                List<HorarioSimple> listaHorarios = ObtenerHorariosExistentes(selector.Id);
+                int horaDigitada = TimeSpan.Parse(txtHora.Text).Hours;
+
+                var nuevo = new HorarioSimple
+                {
+                    Maestro = maestro.Nombre,
+                    Dia = txtDias.Text,
+                    HoraInicio = horaDigitada,
+                    HoraFin = horaDigitada + 1
+                };
+
+                if (ValidadorHorarios.HayChoque(nuevo, listaHorarios, out string mensaje))
+                {
+                    MessageBox.Show(mensaje, "Choque de horario", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+            catch { MessageBox.Show("Revise el formato de la hora (HH:mm)."); return; }
+
+            // --- PROCESO DE ACTUALIZACIÓN ---
             try
             {
                 using (MySqlConnection con = new MySqlConnection(connectionString))
                 {
                     con.Open();
-                    // Incluimos IdMateria en el SET por si se editó
                     string sql = @"UPDATE Materias SET IdMateria=@newId, IdMaestro=@idM, Nombre=@nom, DiasImparte=@d, 
                                  Hora=@h, HD_Credito=@hd, DiasMes=@dm, TotalCredito=@tot, Inscritos=@ins, 
                                  Aula=@a, Seccion=@s, Credito=@c WHERE IdMateria=@oldId";
+
                     MySqlCommand cmd = new MySqlCommand(sql, con);
                     cmd.Parameters.AddWithValue("@newId", txtIdMateria.Text);
                     cmd.Parameters.AddWithValue("@idM", maestro.Id);
@@ -150,6 +212,7 @@ namespace Gestor_de_Horarios_de_Maestros
                     cmd.Parameters.AddWithValue("@s", txtSeccion.Text);
                     cmd.Parameters.AddWithValue("@c", ParseInt(txtCredito.Text));
                     cmd.Parameters.AddWithValue("@oldId", selector.Id);
+
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Materia actualizada.");
                     this.Close();

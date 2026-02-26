@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using System.Collections.Generic; // Necesario para List<>
 
 namespace Gestor_de_Horarios_de_Maestros
 {
@@ -76,14 +77,84 @@ namespace Gestor_de_Horarios_de_Maestros
             }
         }
 
+        // --- NUEVO MÉTODO PARA OBTENER DATOS DE VALIDACIÓN ---
+        private List<HorarioSimple> ObtenerHorariosExistentes()
+        {
+            List<HorarioSimple> lista = new List<HorarioSimple>();
+            try
+            {
+                using (MySqlConnection con = new MySqlConnection(connectionString))
+                {
+                    con.Open();
+                    // Consultamos la tabla Materias unida con Maestros para obtener los nombres
+                    string query = @"SELECT t2.Nombre as Maestro, t1.DiasImparte, t1.Hora 
+                                   FROM Materias t1 
+                                   INNER JOIN Maestros t2 ON t1.IdMaestro = t2.IdMaestro";
+
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    using (MySqlDataReader r = cmd.ExecuteReader())
+                    {
+                        while (r.Read())
+                        {
+                            // Extraemos la hora del formato TIME de MySQL (HH:mm:ss)
+                            int horaI = TimeSpan.Parse(r["Hora"].ToString()).Hours;
+
+                            lista.Add(new HorarioSimple
+                            {
+                                Maestro = r["Maestro"].ToString(),
+                                Dia = r["DiasImparte"].ToString(),
+                                HoraInicio = horaI,
+                                HoraFin = horaI + 1 // Asumiendo bloques de 1 hora
+                            });
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar lista de validación: " + ex.Message);
+            }
+            return lista;
+        }
+
         private void GuardarMateria()
         {
-            if (cmbMaestro.SelectedItem == null || string.IsNullOrWhiteSpace(txtNombreMateria.Text))
+            // 1. Validaciones básicas de campos obligatorios
+            if (cmbMaestro.SelectedItem == null || string.IsNullOrWhiteSpace(txtNombreMateria.Text) || string.IsNullOrWhiteSpace(txtHora.Text))
             {
-                MessageBox.Show("Maestro y Materia son campos obligatorios.", "Validación");
+                MessageBox.Show("Maestro, Materia y Hora son campos obligatorios.", "Validación");
                 return;
             }
 
+            // 2. Lógica de Validación de Choque (Extraída del PDF)
+            try
+            {
+                List<HorarioSimple> listaHorarios = ObtenerHorariosExistentes();
+
+                // Extraemos la hora del TextBox (asumiendo formato HH:mm o HH:mm:ss)
+                int horaDigitada = TimeSpan.Parse(txtHora.Text).Hours;
+
+                var nuevo = new HorarioSimple
+                {
+                    Maestro = cmbMaestro.Text,
+                    Dia = txtDias.Text,
+                    HoraInicio = horaDigitada,
+                    HoraFin = horaDigitada + 1
+                };
+
+                if (ValidadorHorarios.HayChoque(nuevo, listaHorarios, out string mensaje))
+                {
+                    MessageBox.Show(mensaje, "Choque de horario", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Asegúrese de que el formato de hora sea correcto (HH:mm).", "Error de Formato");
+                return;
+            }
+
+            // 3. Proceso de Guardado en Base de Datos
             try
             {
                 int idMaestro = ((ComboItem)cmbMaestro.SelectedItem).Id;
@@ -91,7 +162,6 @@ namespace Gestor_de_Horarios_de_Maestros
                 using (MySqlConnection con = new MySqlConnection(connectionString))
                 {
                     con.Open();
-                    // Query actualizado con IdMateria y TotalCredito
                     string query = @"INSERT INTO Materias 
                         (IdMateria, IdMaestro, Nombre, DiasImparte, Hora, HD_Credito, DiasMes, TotalCredito, Inscritos, Aula, Seccion, Credito)
                         VALUES (@idMateria, @idMaestro, @nombre, @dias, @hora, @hdCredito, @diasMes, @totalCredito, @inscritos, @aula, @seccion, @credito)";
@@ -133,6 +203,7 @@ namespace Gestor_de_Horarios_de_Maestros
 
         private object ParseInt(string val) => int.TryParse(val, out int i) ? (object)i : DBNull.Value;
     }
+
     public class ComboItem
     {
         public int Id { get; set; }
