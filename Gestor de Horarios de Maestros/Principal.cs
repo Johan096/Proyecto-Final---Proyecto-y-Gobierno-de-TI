@@ -193,7 +193,57 @@ namespace Gestor_de_Horarios_de_Maestros
 
         private void removerToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //Verificar si hay una fila actual seleccionada en el DataGridView
+            if (dataGridView1.CurrentRow != null)
+            {
+                //Extraer el ID de la materia y su nombre usando los nombres de columna del View ('ID' y 'Materia')
+                int idMateria = Convert.ToInt32(dataGridView1.CurrentRow.Cells["ID"].Value);
+                string nombreMateria = dataGridView1.CurrentRow.Cells["Materia"].Value.ToString();
 
+                //Confirmar con el usuario si realmente desea eliminar el registro
+                DialogResult respuesta = MessageBox.Show(
+                    $"¿Está seguro de que desea remover la materia '{nombreMateria}' con ID {idMateria}?",
+                    "Confirmar Eliminación",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    try
+                    {
+                        //Conectar a la base de datos y ejecutar la consulta DELETE
+                        using (MySqlConnection con = new MySqlConnection(connectionString))
+                        {
+                            con.Open();
+                            string query = "DELETE FROM Materias WHERE IdMateria = @id";
+                            using (MySqlCommand cmd = new MySqlCommand(query, con))
+                            {
+                                cmd.Parameters.AddWithValue("@id", idMateria);
+                                cmd.ExecuteNonQuery(); // Ejecuta la eliminación
+                            }
+                        }
+
+                        //Notificar éxito y refrescar la tabla
+                        MessageBox.Show("Materia eliminada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        CargarComboMaestros(); // Refresca combo por si era la última materia
+                        CargarGrid(); // Refresca DataGridView
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show("Error al eliminar la materia en la base de datos: " + ex.Message, "Error MySQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ocurrió un error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                // Si no hay fila seleccionada, avisar al usuario
+                MessageBox.Show("Por favor, seleccione una materia en la tabla para remover.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

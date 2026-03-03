@@ -10,3 +10,4 @@
 * Josias Martinez Mitchel (23-SISN-2-054): Se agrego la funcion de Asignar.
 * Harvin Samir Berroa Celesten (23-SISN-2-050): Se agrego la funcion de Buscar.
 * Carlos Manuel Acosta Mota (23-EISN-2-025): Se agrego una fucion para validar horarios y evitar choches.
+* Hansel Reyes E (23-MISN-2-018): Se agrgeo la funcion de eliminar Materia.
