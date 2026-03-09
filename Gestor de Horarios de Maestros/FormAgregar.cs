@@ -86,25 +86,41 @@ namespace Gestor_de_Horarios_de_Maestros
                 using (MySqlConnection con = new MySqlConnection(connectionString))
                 {
                     con.Open();
-                    // Consultamos la tabla Materias unida con Maestros para obtener los nombres
                     string query = @"SELECT t2.Nombre as Maestro, t1.DiasImparte, t1.Hora 
-                                   FROM Materias t1 
-                                   INNER JOIN Maestros t2 ON t1.IdMaestro = t2.IdMaestro";
+                             FROM Materias t1 
+                             INNER JOIN Maestros t2 ON t1.IdMaestro = t2.IdMaestro";
 
                     MySqlCommand cmd = new MySqlCommand(query, con);
                     using (MySqlDataReader r = cmd.ExecuteReader())
                     {
                         while (r.Read())
                         {
-                            // Extraemos la hora del formato TIME de MySQL (HH:mm:ss)
-                            int horaI = TimeSpan.Parse(r["Hora"].ToString()).Hours;
+                            // --- AQUÍ VA EL BLOQUE NUEVO ---
+                            string horaDb = r["Hora"].ToString();
+                            int horaI = 0;
+
+                            try
+                            {
+                                if (horaDb.Contains("-"))
+                                {
+                                    // Si es "08:00 - 10:00", toma el "08:00"
+                                    horaI = TimeSpan.Parse(horaDb.Split('-')[0].Trim()).Hours;
+                                }
+                                else
+                                {
+                                    // Si es solo "08:00:00"
+                                    horaI = TimeSpan.Parse(horaDb).Hours;
+                                }
+                            }
+                            catch { /* En caso de dato mal formado, horaI queda en 0 */ }
+                            // ------------------------------
 
                             lista.Add(new HorarioSimple
                             {
                                 Maestro = r["Maestro"].ToString(),
                                 Dia = r["DiasImparte"].ToString(),
                                 HoraInicio = horaI,
-                                HoraFin = horaI + 1 // Asumiendo bloques de 1 hora
+                                HoraFin = horaI + 1 // Mantenemos la lógica de bloques de 1h para validación
                             });
                         }
                     }
@@ -122,17 +138,19 @@ namespace Gestor_de_Horarios_de_Maestros
             // 1. Validaciones básicas de campos obligatorios
             if (cmbMaestro.SelectedItem == null || string.IsNullOrWhiteSpace(txtNombreMateria.Text) || string.IsNullOrWhiteSpace(txtHora.Text))
             {
-                MessageBox.Show("Maestro, Materia y Hora son campos obligatorios.", "Validación");
+                MessageBox.Show("Maestro, Materia y Hora son obligatorios.", "Validación");
                 return;
             }
 
             // 2. Lógica de Validación de Choque (Extraída del PDF)
             try
             {
-                List<HorarioSimple> listaHorarios = ObtenerHorariosExistentes();
 
                 // Extraemos la hora del TextBox (asumiendo formato HH:mm o HH:mm:ss)
-                int horaDigitada = TimeSpan.Parse(txtHora.Text).Hours;
+                string horaTexto = txtHora.Text.Split('-')[0].Trim(); // Toma lo que está antes del guion
+                int horaDigitada = TimeSpan.Parse(horaTexto).Hours;
+
+                List<HorarioSimple> listaHorarios = ObtenerHorariosExistentes();
 
                 var nuevo = new HorarioSimple
                 {
@@ -148,9 +166,9 @@ namespace Gestor_de_Horarios_de_Maestros
                     return;
                 }
             }
-            catch (Exception)
+            catch
             {
-                MessageBox.Show("Asegúrese de que el formato de hora sea correcto (HH:mm).", "Error de Formato");
+                MessageBox.Show("Formato sugerido: 08:00 - 10:00", "Ayuda de Formato");
                 return;
             }
 

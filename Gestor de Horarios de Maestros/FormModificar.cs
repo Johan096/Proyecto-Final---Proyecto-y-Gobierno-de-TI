@@ -69,11 +69,10 @@ namespace Gestor_de_Horarios_de_Maestros
                 using (MySqlConnection con = new MySqlConnection(connectionString))
                 {
                     con.Open();
-                    // Consultamos todos los horarios EXCEPTO el que estamos modificando actualmente
                     string query = @"SELECT t2.Nombre as Maestro, t1.DiasImparte, t1.Hora 
-                                   FROM Materias t1 
-                                   INNER JOIN Maestros t2 ON t1.IdMaestro = t2.IdMaestro
-                                   WHERE t1.IdMateria != @idActual";
+                             FROM Materias t1 
+                             INNER JOIN Maestros t2 ON t1.IdMaestro = t2.IdMaestro
+                             WHERE t1.IdMateria != @idActual";
 
                     MySqlCommand cmd = new MySqlCommand(query, con);
                     cmd.Parameters.AddWithValue("@idActual", idMateriaActual);
@@ -82,7 +81,24 @@ namespace Gestor_de_Horarios_de_Maestros
                     {
                         while (r.Read())
                         {
-                            int horaI = TimeSpan.Parse(r["Hora"].ToString()).Hours;
+                            // LÓGICA NUEVA: Manejar formato "08:00 - 10:00" o "08:00:00"
+                            string horaDb = r["Hora"].ToString();
+                            int horaI = 0;
+
+                            try
+                            {
+                                if (horaDb.Contains("-"))
+                                {
+                                    // Extrae la primera parte del rango
+                                    horaI = TimeSpan.Parse(horaDb.Split('-')[0].Trim()).Hours;
+                                }
+                                else
+                                {
+                                    horaI = TimeSpan.Parse(horaDb).Hours;
+                                }
+                            }
+                            catch { /* Si el formato es inválido, se ignora esa fila */ }
+
                             lista.Add(new HorarioSimple
                             {
                                 Maestro = r["Maestro"].ToString(),
@@ -166,11 +182,17 @@ namespace Gestor_de_Horarios_de_Maestros
         {
             if (!(cmbMaterias.SelectedItem is ComboItem selector) || !(cmbMaestroAsoc.SelectedItem is ComboItem maestro)) return;
 
-            // --- VALIDACIÓN DE CHOQUE (Código del PDF) ---
+            // --- VALIDACIÓN DE CHOQUE CORREGIDA ---
             try
             {
                 List<HorarioSimple> listaHorarios = ObtenerHorariosExistentes(selector.Id);
-                int horaDigitada = TimeSpan.Parse(txtHora.Text).Hours;
+
+                // LÓGICA NUEVA: Extraer solo la hora de inicio del TextBox para la validación
+                string horaTexto = txtHora.Text.Contains("-")
+                                   ? txtHora.Text.Split('-')[0].Trim()
+                                   : txtHora.Text.Trim();
+
+                int horaDigitada = TimeSpan.Parse(horaTexto).Hours;
 
                 var nuevo = new HorarioSimple
                 {
@@ -186,24 +208,28 @@ namespace Gestor_de_Horarios_de_Maestros
                     return;
                 }
             }
-            catch { MessageBox.Show("Revise el formato de la hora (HH:mm)."); return; }
+            catch
+            {
+                MessageBox.Show("Asegúrese de que la hora inicial sea válida (ej. 08:00 o 08:00 - 10:00).");
+                return;
+            }
 
-            // --- PROCESO DE ACTUALIZACIÓN ---
+            // --- PROCESO DE ACTUALIZACIÓN (Se mantiene igual, ahora acepta VARCHAR) ---
             try
             {
                 using (MySqlConnection con = new MySqlConnection(connectionString))
                 {
                     con.Open();
                     string sql = @"UPDATE Materias SET IdMateria=@newId, IdMaestro=@idM, Nombre=@nom, DiasImparte=@d, 
-                                 Hora=@h, HD_Credito=@hd, DiasMes=@dm, TotalCredito=@tot, Inscritos=@ins, 
-                                 Aula=@a, Seccion=@s, Credito=@c WHERE IdMateria=@oldId";
+                           Hora=@h, HD_Credito=@hd, DiasMes=@dm, TotalCredito=@tot, Inscritos=@ins, 
+                           Aula=@a, Seccion=@s, Credito=@c WHERE IdMateria=@oldId";
 
                     MySqlCommand cmd = new MySqlCommand(sql, con);
                     cmd.Parameters.AddWithValue("@newId", txtIdMateria.Text);
                     cmd.Parameters.AddWithValue("@idM", maestro.Id);
                     cmd.Parameters.AddWithValue("@nom", txtNombreM.Text);
                     cmd.Parameters.AddWithValue("@d", txtDias.Text);
-                    cmd.Parameters.AddWithValue("@h", txtHora.Text);
+                    cmd.Parameters.AddWithValue("@h", txtHora.Text.Trim()); // Guarda el texto completo (ej. "08:00 - 10:00")
                     cmd.Parameters.AddWithValue("@hd", ParseInt(txtHDCredito.Text));
                     cmd.Parameters.AddWithValue("@dm", ParseInt(txtDiasMes.Text));
                     cmd.Parameters.AddWithValue("@tot", ParseInt(txtTotalCredito.Text));
@@ -214,7 +240,7 @@ namespace Gestor_de_Horarios_de_Maestros
                     cmd.Parameters.AddWithValue("@oldId", selector.Id);
 
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("Materia actualizada.");
+                    MessageBox.Show("Materia actualizada correctamente.");
                     this.Close();
                 }
             }

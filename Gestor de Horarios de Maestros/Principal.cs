@@ -114,6 +114,7 @@ namespace Gestor_de_Horarios_de_Maestros
         public Principal()
         {
             InitializeComponent();
+            this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
         }
 
         private void Principal_Load(object sender, EventArgs e)
@@ -280,5 +281,23 @@ namespace Gestor_de_Horarios_de_Maestros
             CargarGrid();
             MessageBox.Show("Datos actualizados correctamente.", "Nítido", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // Buscamos la columna "Hora"
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "Hora" && e.Value != null)
+            {
+                string valor = e.Value.ToString();
+
+                // Si el usuario escribió "08:00-10:00", lo ponemos bonito: "08:00 - 10:00"
+                if (valor.Contains("-"))
+                {
+                    string[] partes = valor.Split('-');
+                    e.Value = $"{partes[0].Trim()} - {partes[1].Trim()}";
+                    e.FormattingApplied = true;
+                }
+            }
+        }
+
     }
 }
