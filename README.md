@@ -12,3 +12,4 @@
 * Carlos Manuel Acosta Mota (23-EISN-2-025): Se agrego una fucion para validar horarios y evitar choches.
 * Hansel Reyes E (23-MISN-2-018): Se agrgeo la funcion de eliminar Materia.
 * Edward Blanko Suarez (23-SISN-2-010): Se modifico el formato de horas.
+* Johan Daniel Muñoz (22-SISN-2-041): Se documentó el proceso de instalación del sistema Gestor de Horarios de Maestros en la computadora del rector, incluyendo los requisitos del sistema, configuración de la base de datos y ejecución de la aplicación.
